@@ -8,7 +8,7 @@ def download_db_if_needed():
         print("📥 Downloading database from Google Drive...")
         try:
             gdown.download(
-                f"https://drive.google.com/uc?id=1oLRYD11R5jFuBSizBh-SpUnohH7Zh5km",
+                f"https://drive.google.com/uc?id=1J1_EbyJLpAikKTLjP9aFEMp7zGjO3G6s",
                 DB_PATH, quiet=False
             )
             print("✅ Database downloaded")
@@ -29,7 +29,7 @@ def download_db_if_needed():
         print("📥 Database not found locally — downloading from Google Drive...")
         try:
             gdown.download(
-                "https://drive.google.com/uc?id=https://drive.google.com/drive/folders/1oVpilE9DTfK7jtA1SdVol_T6XXrcwtOo?usp=sharing",
+                "https://drive.google.com/uc?id=1J1_EbyJLpAikKTLjP9aFEMp7zGjO3G6s://drive.google.com/drive/folders/1oVpilE9DTfK7jtA1SdVol_T6XXrcwtOo?usp=sharing",
                 DB_PATH, quiet=False
             )
             print("✅ Database downloaded successfully")
