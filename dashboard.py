@@ -8,7 +8,7 @@ def download_db_if_needed():
         print("📥 Downloading database from Google Drive...")
         try:
             gdown.download(
-                f"https://drive.google.com/uc?id=https://drive.google.com/file/d/1oLRYD11R5jFuBSizBh-SpUnohH7Zh5km/view?usp=sharing",
+                f"https://drive.google.com/uc?id=1oLRYD11R5jFuBSizBh-SpUnohH7Zh5km",
                 DB_PATH, quiet=False
             )
             print("✅ Database downloaded")
