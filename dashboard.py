@@ -4,6 +4,26 @@ import os
 DB_PATH = "apmi_pms.db"
 
 def download_db_if_needed():
+    if not os.path.exists(DB_PATH):
+        print("📥 Downloading database from Google Drive...")
+        try:
+            gdown.download(
+                f"https://drive.google.com/uc?id=https://drive.google.com/file/d/1oLRYD11R5jFuBSizBh-SpUnohH7Zh5km/view?usp=sharing",
+                DB_PATH, quiet=False
+            )
+            print("✅ Database downloaded")
+        except Exception as e:
+            print(f"❌ Download failed: {e}")
+    else:
+        print("✅ Database found locally")
+
+download_db_if_needed()
+
+import gdown
+import os
+
+
+def download_db_if_needed():
     """Downloads apmi_pms.db from Google Drive if not present locally."""
     if not os.path.exists(DB_PATH):
         print("📥 Database not found locally — downloading from Google Drive...")
