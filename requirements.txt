@@ -1,0 +1,9 @@
+streamlit
+pandas
+plotly
+numpy
+openpyxl
+gdown
+requests
+beautifulsoup4
+python-dateutil
