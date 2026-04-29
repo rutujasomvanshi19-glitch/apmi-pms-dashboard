@@ -427,7 +427,9 @@ def view_leaderboard(df, filters, df_bench):
     with dl1: csv_button(df_d, f"leaderboard_{period_label.replace(' ','_')}.csv", f"⬇️ CSV — {period_label}")
     with dl2: excel_button(df, [c for c in BASE_EXPORT_COLS if c in df.columns],
                            "leaderboard_all_periods.xlsx", df_bench, "📥 Excel — All Periods (9 sheets)")
-    fig = px.histogram(df_lb, x=period, nbins=50, color="strategy_type", color_discrete_map=COLORS,
+    # Ensure strategy_type present for histogram coloring
+    df_hist_data = df.dropna(subset=[period]).copy()
+    fig = px.histogram(df_hist_data, x=period, nbins=50, color="strategy_type", color_discrete_map=COLORS,
                        labels={period:f"Return ({period_label})","strategy_type":"Strategy"},
                        title=f"Distribution of {period_label} Returns")
     fig.add_vline(x=df_lb[period].median(), line_dash="dash", annotation_text=f"Median: {df_lb[period].median():.2f}%")
@@ -1193,6 +1195,12 @@ def main():
 
     filters     = build_sidebar(df_perf, df_notes)
     df_filtered = apply_filters(df_perf.copy(), filters)
+    # Ensure strategy_type column always present after filtering
+    if "strategy_type" not in df_filtered.columns and "strategy_type" in df_perf.columns:
+        df_filtered["strategy_type"] = df_perf.loc[df_filtered.index, "strategy_type"]
+    # Ensure strategy_type column always present after filtering
+    if "strategy_type" not in df_filtered.columns and "strategy_type" in df_perf.columns:
+        df_filtered["strategy_type"] = df_perf.loc[df_filtered.index, "strategy_type"]
 
     st.markdown("""<div style="padding:24px 0 8px 0">
         <h1 style="color:#1e40af;margin:0;font-size:32px">📊 APMI PMS Performance Dashboard</h1>
